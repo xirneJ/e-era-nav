@@ -1,22 +1,12 @@
 export const categories = [
   {
-    slug: 'members',
-    name: 'E时代社团成员项目',
-    shortName: '成员项目',
-    description: '社团成员个人项目与作品展示',
-    accent: '#4f8fc9',
-    glow: '#8ab8e8',
-    position: [-4.992, 0, -4.992],
-    camera: [-6.4, 6.8, -4],
-  },
-  {
     slug: 'products',
     name: '产品服务',
     shortName: '产品服务',
     description: 'E时代社团产品与基础服务',
     accent: '#2f7f78',
     glow: '#79c9bd',
-    position: [-4.992, 0, 4.992],
+    position: [-4.992, 0, -2.882],
     camera: [-6.4, 6.8, 14],
   },
   {
@@ -26,7 +16,7 @@ export const categories = [
     description: '已接入 E时代通行证的一键登录产品',
     accent: '#b77b2f',
     glow: '#e9bd72',
-    position: [4.992, 0, 4.992],
+    position: [4.992, 0, -2.882],
     camera: [6.4, 6.6, 14],
   },
   {
@@ -36,7 +26,7 @@ export const categories = [
     description: '社团团队、实验室与开发入口',
     accent: '#7d5b78',
     glow: '#c7a2c0',
-    position: [4.992, 0, -4.992],
+    position: [0, 0, 5.764],
     camera: [6.4, 6.8, -4],
   },
 ]
@@ -51,7 +41,7 @@ export const services = [
     icon: 'lock',
     tags: ['身份认证', '账号', '基础服务'],
     badge: 'core',
-    position: [-4.992, 0.75, 4.992],
+    position: [-4.992, 0.75, -2.882],
   },
   {
     slug: 'era-ide',
@@ -62,7 +52,7 @@ export const services = [
     icon: 'code',
     tags: ['云端开发', '开发工具'],
     badge: 'core',
-    position: [-4.992, 0.75, 6.864],
+    position: [-4.992, 0.75, -1.010],
   },
   {
     slug: 'era-cloud',
@@ -72,7 +62,7 @@ export const services = [
     url: 'https://cloud.emoera.com/',
     icon: 'cloud',
     tags: ['存储', '计算', '云服务'],
-    position: [-4.992, 0.75, 3.12],
+    position: [-4.992, 0.75, -4.754],
   },
   {
     slug: 'era-trust',
@@ -82,7 +72,7 @@ export const services = [
     url: 'https://trust.emoera.com/',
     icon: 'shield',
     tags: ['安全', '认证'],
-    position: [-6.864, 0.75, 4.992],
+    position: [-6.864, 0.75, -2.882],
   },
   {
     slug: 'era-lottery',
@@ -92,7 +82,7 @@ export const services = [
     url: 'https://choujiang.emoera.com/',
     icon: 'globe',
     tags: ['活动', '随机抽取'],
-    position: [-3.12, 0.75, 4.992],
+    position: [-3.12, 0.75, -2.882],
   },
   {
     slug: 'era-id',
@@ -102,7 +92,7 @@ export const services = [
     url: 'https://neweid.emoera.com/',
     icon: 'id-card',
     tags: ['数字身份', '成员服务'],
-    position: [-6.864, 0.75, 6.864],
+    position: [-6.864, 0.75, -1.010],
   },
   {
     slug: 'era-clipboard',
@@ -113,7 +103,7 @@ export const services = [
     icon: 'clipboard',
     tags: ['临时分享', '代码片段', '协作'],
     badge: 'passport',
-    position: [4.992, 0.75, 6.864],
+    position: [4.992, 0.75, -1.010],
   },
   {
     slug: 'era-registration',
@@ -124,7 +114,7 @@ export const services = [
     icon: 'check-orbit',
     tags: ['竞赛报名', '活动管理'],
     badge: 'passport',
-    position: [4.992, 0.75, 4.992],
+    position: [4.992, 0.75, -2.882],
   },
   {
     slug: 'era-image-host',
@@ -135,7 +125,7 @@ export const services = [
     icon: 'image',
     tags: ['图片托管', '分享'],
     badge: 'passport',
-    position: [4.992, 0.75, 3.12],
+    position: [4.992, 0.75, -4.754],
   },
   {
     slug: 'era-forum',
@@ -146,7 +136,7 @@ export const services = [
     icon: 'message',
     tags: ['社区', '知识分享'],
     badge: 'passport',
-    position: [3.12, 0.75, 4.992],
+    position: [3.12, 0.75, -2.882],
   },
   {
     slug: 'era-git',
@@ -157,7 +147,7 @@ export const services = [
     icon: 'git',
     tags: ['代码仓库', '版本控制', '协作'],
     badge: 'passport',
-    position: [6.864, 0.75, 4.992],
+    position: [6.864, 0.75, -2.882],
   },
   {
     slug: 'acm-team',
@@ -167,7 +157,7 @@ export const services = [
     url: 'https://acm.emoera.com/',
     icon: 'monitor',
     tags: ['算法竞赛', '团队'],
-    position: [4.992, 0.75, -4.992],
+    position: [0, 0.75, 5.764],
   },
   {
     slug: 'era-team',
@@ -177,7 +167,7 @@ export const services = [
     url: 'https://we.emoera.com/',
     icon: 'users',
     tags: ['官网', '社团'],
-    position: [3.12, 0.75, -4.992],
+    position: [-1.872, 0.75, 5.764],
   },
   {
     slug: 'era-developer',
@@ -187,7 +177,7 @@ export const services = [
     url: 'https://developer.emoera.com/',
     icon: 'globe',
     tags: ['开发者', '资源入口'],
-    position: [6.864, 0.75, -4.992],
+    position: [1.872, 0.75, 5.764],
   },
   {
     slug: 'miaoji-lab',
@@ -197,7 +187,7 @@ export const services = [
     url: 'https://home.miaojilab.cn/',
     icon: 'bulb',
     tags: ['实验室', '技术研究'],
-    position: [4.992, 0.75, -3.12],
+    position: [0, 0.75, 7.636],
   },
   {
     slug: 'era-oj',
@@ -207,7 +197,7 @@ export const services = [
     url: 'https://oj.emoera.com/',
     icon: 'terminal',
     tags: ['在线评测', '算法'],
-    position: [4.992, 0.75, -6.864],
+    position: [0, 0.75, 3.892],
   },
   {
     slug: 'qifa-lab',
@@ -217,17 +207,7 @@ export const services = [
     url: 'https://www.qifalab.cn/qifalab-v1/',
     icon: 'flask',
     tags: ['研发', '解决方案'],
-    position: [6.864, 0.75, -6.864],
-  },
-  {
-    slug: 'duya-note',
-    category: 'members',
-    name: '渡鸦笔记',
-    description: '个人知识管理与笔记分享平台',
-    url: 'https://www.duya.website/',
-    icon: 'book',
-    tags: ['笔记', '知识管理'],
-    position: [-4.992, 0.75, -4.992],
+    position: [1.872, 0.75, 3.892],
   },
 ]
 

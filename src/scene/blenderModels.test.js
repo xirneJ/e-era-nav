@@ -23,9 +23,10 @@ describe('Blender production asset', () => {
     }
   })
 
-  it('contains a distinct, volumetric model for all 18 service slugs', () => {
+  it('contains a distinct, volumetric model for all 17 service slugs', () => {
     const roots = modelFile.scene.children
     expect(roots.map((node) => node.name).sort()).toEqual(services.map((service) => service.slug).sort())
+    expect(roots.map((node) => node.name)).not.toContain('duya-note')
     for (const root of roots) {
       const box = new Box3().setFromObject(root)
       expect(box.max.z - box.min.z, root.name).toBeGreaterThan(.2)

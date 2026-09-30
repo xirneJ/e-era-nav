@@ -406,7 +406,7 @@ function App() {
       <main className="site-main">
         <div className={`service-hero ${renderMode === '3d' ? 'has-scene' : ''}`}>
         <div className="page-intro">
-          <div><h1 id="hero-title">服务导航</h1><p>社团产品、成员作品与团队入口</p></div>
+          <div><h1 id="hero-title">服务导航</h1><p>社团产品、通行证生态与团队入口</p></div>
         <div className="catalog-search search-console" id="global-search">
           <Search aria-hidden="true" />
           <input
@@ -627,7 +627,7 @@ function App() {
                 <span>01</span>
                 <strong>按分类浏览</strong>
                 <p>
-                  按成员项目、产品服务、通行证生态链、团队与官网查看社团入口。
+                  按产品服务、通行证生态链、团队与官网查看社团入口。
                 </p>
               </div>
               <div>
@@ -661,7 +661,7 @@ function App() {
                 <dd>切换栏目</dd>
               </div>
               <div>
-                <dt>Alt 1–4</dt>
+                <dt>Alt 1–3</dt>
                 <dd>聚焦区域</dd>
               </div>
               <div>

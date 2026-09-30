@@ -315,16 +315,7 @@ def flask():
     for x,z,s in [(.37,.57,.08),(.51,.85,.055)]:ball('Discovery bubble',(x,0,z),(s,s,s),'mint')
 
 
-def note():
-    box('Notebook back',(0,.12,-.05),(1.06,.15,1.25),'navy',.05)
-    box('Paper block',(.045,0,-.05),(.94,.18,1.13),'ivory',.025)
-    box('Notebook cover',(0,-.13,-.05),(1.06,.12,1.25),'teal',.05)
-    box('Book spine',(-.48,.0,-.05),(.14,.35,1.25),'navy',.045)
-    polygon('Golden feather',[(-.2,-.23),(-.10,.27),(.12,.49),(.28,.30),(.23,.02)],.045,'gold',y=-.22,bevel=.025)
-    tube('Feather quill',[(-.23,-.26,-.37),(.18,-.26,.36)],.022,'ivory')
-    box('Bookmark',(.31,.02,-.70),(.13,.03,.20),'gold',.015)
-
-for slug,fn in [('era-passport',passport),('era-ide',ide),('era-cloud',cloud),('era-trust',trust),('era-lottery',lottery),('era-id',identity),('era-clipboard',clipboard),('era-registration',registration),('era-image-host',image_host),('era-forum',forum),('era-git',git),('acm-team',acm),('era-team',team),('era-developer',developer),('miaoji-lab',bulb),('era-oj',oj),('qifa-lab',flask),('duya-note',note)]:build(slug,fn)
+for slug,fn in [('era-passport',passport),('era-ide',ide),('era-cloud',cloud),('era-trust',trust),('era-lottery',lottery),('era-id',identity),('era-clipboard',clipboard),('era-registration',registration),('era-image-host',image_host),('era-forum',forum),('era-git',git),('acm-team',acm),('era-team',team),('era-developer',developer),('miaoji-lab',bulb),('era-oj',oj),('qifa-lab',flask)]:build(slug,fn)
 
 bpy.ops.object.select_all(action='DESELECT')
 for o in models.values():o.select_set(True)

@@ -26,13 +26,13 @@ const expectedMapping = {
   'miaoji-lab': 'bulb',
   'era-oj': 'terminal',
   'qifa-lab': 'flask',
-  'duya-note': 'book',
 }
 
 describe('original icon registry', () => {
-  it('audits all 18 service-to-icon assignments exactly', () => {
+  it('audits all 17 service-to-icon assignments exactly', () => {
     expect(SERVICE_ICON_MAP).toEqual(expectedMapping)
-    expect(Object.keys(SERVICE_ICON_MAP)).toHaveLength(18)
+    expect(Object.keys(SERVICE_ICON_MAP)).toHaveLength(17)
+    expect(ICON_DEFINITIONS.book).toBeUndefined()
     services.forEach((service) => {
       expect(service.icon).toBe(SERVICE_ICON_MAP[service.slug])
       expect(ICON_DEFINITIONS[service.icon]).toBeDefined()

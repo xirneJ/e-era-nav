@@ -40,16 +40,17 @@ describe('E时代社团服务导航', () => {
     })
   })
 
-  it('保留完整 18 个入口和四个服务分类', async () => {
+  it('保留完整 17 个入口和三个服务分类', async () => {
     render(<App />)
 
     expect(await screen.findByTestId('spatial-scene')).toBeInTheDocument()
     expect(screen.getByRole('link', { name: '服务导航' })).toHaveAttribute('aria-current', 'page')
     expect(screen.getByRole('link', { name: '刷题导航' })).toHaveAttribute('href', '/oj/')
     expect(screen.getByRole('heading', { level: 1, name: '服务导航' })).toBeVisible()
-    expect(screen.getByText('社团产品、成员作品与团队入口')).toBeVisible()
-    expect(screen.getAllByTestId('service-card')).toHaveLength(18)
-    expect(screen.getByRole('navigation', { name: '服务分类' })).toHaveTextContent('成员项目')
+    expect(screen.getByText('社团产品、通行证生态与团队入口')).toBeVisible()
+    expect(screen.getAllByTestId('service-card')).toHaveLength(17)
+    expect(screen.getByRole('navigation', { name: '服务分类' })).not.toHaveTextContent('成员项目')
+    expect(screen.queryByText('渡鸦笔记')).not.toBeInTheDocument()
     expect(screen.getByRole('navigation', { name: '服务分类' })).toHaveTextContent('产品服务')
     expect(screen.getByRole('group', { name: '服务展示方式' })).toBeVisible()
   })
@@ -74,7 +75,7 @@ describe('E时代社团服务导航', () => {
     vi.mocked(detectCapabilities).mockReturnValueOnce({ webgl: false, recommendedMode: '2d' })
     render(<App />)
     expect(screen.queryByTestId('spatial-scene')).not.toBeInTheDocument()
-    expect(screen.getAllByTestId('service-card')).toHaveLength(18)
+    expect(screen.getAllByTestId('service-card')).toHaveLength(17)
     expect(screen.getByText('当前设备无法显示 3D，已为你打开服务列表。')).toBeVisible()
   })
 
@@ -87,8 +88,8 @@ describe('E时代社团服务导航', () => {
       '/brand/e-era-logo-96.png',
     )
     const serviceIcons = [...container.querySelectorAll('[data-original-icon]')]
-    expect(serviceIcons).toHaveLength(18)
-    expect(new Set(serviceIcons.map((element) => element.dataset.originalIcon)).size).toBe(17)
+    expect(serviceIcons).toHaveLength(17)
+    expect(new Set(serviceIcons.map((element) => element.dataset.originalIcon)).size).toBe(16)
     expect(container.querySelector('[src*="we.emoera.com"]')).not.toBeInTheDocument()
   })
 
@@ -147,7 +148,7 @@ describe('E时代社团服务导航', () => {
 
     fireEvent.click(screen.getByRole('button', { name: '切换到2D模式' }))
     expect(screen.getByText('已手动切换为 2D 服务列表。')).toBeInTheDocument()
-    expect(screen.getAllByTestId('service-card')).toHaveLength(18)
+    expect(screen.getAllByTestId('service-card')).toHaveLength(17)
   })
 
   it('WebGL 运行失败时自动降级且功能不丢失', async () => {
@@ -156,7 +157,7 @@ describe('E时代社团服务导航', () => {
 
     fireEvent.click(screen.getByRole('button', { name: '模拟 WebGL 丢失' }))
     expect(screen.getByText('模拟上下文丢失')).toBeInTheDocument()
-    expect(screen.getAllByTestId('service-card')).toHaveLength(18)
+    expect(screen.getAllByTestId('service-card')).toHaveLength(17)
     expect(localStorage.getItem(preferenceKeys.renderMode)).toBeNull()
     firstVisit.unmount()
     render(<App />)
@@ -231,10 +232,10 @@ describe('E时代社团服务导航', () => {
     await screen.findByTestId('spatial-scene')
 
     fireEvent.keyDown(window, { key: '1', altKey: true })
-    expect(window.location.search).toContain('category=members')
+    expect(window.location.search).toContain('category=products')
     fireEvent.keyDown(window, { key: 'b', altKey: true })
     expect(window.location.search).toBe('')
-    fireEvent.keyDown(window, { key: '4', altKey: true })
+    fireEvent.keyDown(window, { key: '3', altKey: true })
     expect(window.location.search).toContain('category=team')
     fireEvent.keyDown(window, { key: 'h', altKey: true })
     expect(window.location.search).toBe('')
@@ -323,7 +324,7 @@ describe('E时代社团服务导航', () => {
     expect(screen.getAllByTestId('service-card')).toHaveLength(6)
     window.history.replaceState({}, '', '/')
     fireEvent.popState(window)
-    expect(screen.getAllByTestId('service-card')).toHaveLength(18)
+    expect(screen.getAllByTestId('service-card')).toHaveLength(17)
     expect(screen.queryByText('已手动切换为 2D 服务列表。')).not.toBeInTheDocument()
     expect(document.title).toBe('服务导航 · E时代导航')
   })

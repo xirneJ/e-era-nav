@@ -65,7 +65,7 @@ async function enableSoftwareWebGLFor3d(
   }, { hardwareConcurrency, deviceMemory })
 }
 
-test('保留 18 个语义入口并通过基础无障碍审计', async ({ page }, testInfo) => {
+test('保留 17 个语义入口并通过基础无障碍审计', async ({ page }, testInfo) => {
   await page.goto('/')
   await expect(page.getByRole('dialog')).toHaveCount(0)
   const helpButton = page.getByRole('button', { name: '导航操作帮助' })
@@ -76,7 +76,7 @@ test('保留 18 个语义入口并通过基础无障碍审计', async ({ page },
   await helpDialog.getByRole('button', { name: '关闭' }).click()
   await expect(helpDialog).not.toBeVisible()
   await expect(helpButton).toBeFocused()
-  await expect(page.getByTestId('service-card')).toHaveCount(18)
+  await expect(page.getByTestId('service-card')).toHaveCount(17)
   await expect(page.getByRole('heading', { name: '选择服务，快速访问' })).toBeVisible()
   await expect(page.locator('.brand strong')).toHaveText('E时代社团服务导航')
   const heroLines = page.locator('#hero-title > span')
@@ -129,7 +129,7 @@ test('保留 18 个语义入口并通过基础无障碍审计', async ({ page },
 
   const jsonLd = await page.locator('script[type="application/ld+json"]').textContent()
   const graph = JSON.parse(jsonLd)['@graph']
-  expect(graph.find((entry) => entry['@type'] === 'ItemList').numberOfItems).toBe(18)
+  expect(graph.find((entry) => entry['@type'] === 'ItemList').numberOfItems).toBe(17)
 
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)
   expect(overflow).toBeLessThanOrEqual(1)
@@ -140,7 +140,7 @@ test('保留 18 个语义入口并通过基础无障碍审计', async ({ page },
   }
 })
 
-test('品牌 Logo 本地加载且 18 项使用原版 icon 映射', async ({ page }, testInfo) => {
+test('品牌 Logo 本地加载且 17 项使用原版 icon 映射', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'desktop')
   await page.addInitScript(() => {
     Object.defineProperty(HTMLCanvasElement.prototype, 'getContext', {
@@ -158,7 +158,6 @@ test('品牌 Logo 本地加载且 18 项使用原版 icon 映射', async ({ page
   )
 
   const expectedIcons = [
-    'book',
     'lock',
     'code',
     'cloud',
@@ -178,14 +177,14 @@ test('品牌 Logo 本地加载且 18 项使用原版 icon 映射', async ({ page
     'flask',
   ]
   const cards = page.getByTestId('service-card')
-  await expect(cards).toHaveCount(18)
+  await expect(cards).toHaveCount(17)
   const cardFaces = page.locator('.service-card-face--directory')
   expect(
     await cardFaces.evaluateAll((elements) =>
       elements.map((element) => element.getAttribute('data-original-icon')),
     ),
   ).toEqual(expectedIcons)
-  await expect(page.locator('.service-card-face__icon > svg')).toHaveCount(18)
+  await expect(page.locator('.service-card-face__icon > svg')).toHaveCount(17)
   await page.addStyleTag({ content: 'html { filter: grayscale(1); }' })
   await page.screenshot({
     path: 'artifacts/screenshots/desktop-original-icons-grayscale.png',
@@ -206,7 +205,7 @@ test('2D 服务区块单击与 Enter 直接安全导航', async ({ page }, testI
   }
 
   const links = page.locator('#service-directory a[data-direct-service]')
-  await expect(links).toHaveCount(18)
+  await expect(links).toHaveCount(17)
   expect(
     await links.evaluateAll((elements) =>
       elements.every(
@@ -253,7 +252,7 @@ test('2D 服务区块单击与 Enter 直接安全导航', async ({ page }, testI
   await expect(page.getByRole('dialog')).toHaveCount(0)
 })
 
-test('输出原版 2D icon、3D 正视与 3D 斜视的 18 项 catalog', {
+test('输出原版 2D icon、3D 正视与 3D 斜视的 17 项 catalog', {
   tag: '@visual',
 }, async ({ page, browser }, testInfo) => {
   test.skip(testInfo.project.name !== 'desktop')
@@ -431,7 +430,7 @@ test('搜索命中真实 3D Mesh 且禁止 icon 贴图与 DOM 替身', async ({ 
     .poll(() =>
       page.evaluate(() => window.__eEraReadGeometryAudit?.().length || 0),
     )
-    .toBe(18)
+    .toBe(17)
   const overviewAudit = await page.evaluate(() => window.__eEraReadGeometryAudit())
   expect(
     overviewAudit.every(
@@ -564,15 +563,15 @@ test('WebGL 不可用时自动进入高质量 2D 服务列表', async ({ page },
 
   await expect(page.getByRole('button', { name: '切换到3D模式' })).toBeVisible()
   await expect(page.getByText('已根据设备能力启用轻量 2D 模式。')).toBeVisible()
-  await expect(page.getByTestId('service-card')).toHaveCount(18)
-  await expect(page.locator('#service-directory a[data-direct-service]')).toHaveCount(18)
+  await expect(page.getByTestId('service-card')).toHaveCount(17)
+  await expect(page.locator('#service-directory a[data-direct-service]')).toHaveCount(17)
   await page.screenshot({
     path: `artifacts/screenshots/${testInfo.project.name}-2d-fallback.png`,
     fullPage: true,
   })
 })
 
-test('WebGL 上下文丢失时即时降级且保持 18 个入口', async ({ page }, testInfo) => {
+test('WebGL 上下文丢失时即时降级且保持 17 个入口', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'desktop')
   await enableSoftwareWebGLFor3d(page)
   await page.goto('/')
@@ -583,8 +582,8 @@ test('WebGL 上下文丢失时即时降级且保持 18 个入口', async ({ page
     element.dispatchEvent(new Event('webglcontextlost', { cancelable: true }))
   })
   await expect(page.getByText('WebGL 上下文丢失，已切换到 2D 服务列表。')).toBeVisible()
-  await expect(page.getByTestId('service-card')).toHaveCount(18)
-  await expect(page.locator('#service-directory a[data-direct-service]')).toHaveCount(18)
+  await expect(page.getByTestId('service-card')).toHaveCount(17)
+  await expect(page.locator('#service-directory a[data-direct-service]')).toHaveCount(17)
 })
 
 test('reduced motion 保持完整导航与静态反馈', async ({ page }, testInfo) => {
@@ -731,7 +730,7 @@ test('生成关键视口视觉截图', { tag: '@visual' }, async ({ page }, test
       .poll(() =>
         page.evaluate(() => window.__eEraReadGeometryAudit?.().length || 0),
       )
-      .toBe(18)
+      .toBe(17)
     await page.evaluate(
       () =>
         new Promise((resolve) => {
@@ -783,7 +782,7 @@ test('Blender 模型请求失败时恢复到完整服务目录', async ({ page }
   await page.route('**/assets/navigation-sculptures-*.glb', (route) => route.abort())
   await page.goto('/')
   await expect(page.getByRole('button', { name: '切换到3D模式' })).toBeVisible()
-  await expect(page.locator('#service-directory a[data-direct-service]')).toHaveCount(18)
+  await expect(page.locator('#service-directory a[data-direct-service]')).toHaveCount(17)
 })
 
 test('宽屏慢网加载时背景完整、标题不重叠且可以先用列表', async ({ page }, testInfo) => {
@@ -807,7 +806,7 @@ test('宽屏慢网加载时背景完整、标题不重叠且可以先用列表',
     const modelArea = await scene.boundingBox()
     expect(modelArea.x).toBeGreaterThanOrEqual(hero.x + hero.width + 24)
     await page.getByRole('button', { name: '先用 2D 服务列表' }).click()
-    await expect(page.locator('#service-directory a[data-direct-service]')).toHaveCount(18)
+    await expect(page.locator('#service-directory a[data-direct-service]')).toHaveCount(17)
   } finally { release() }
 })
 
@@ -821,6 +820,6 @@ test('压缩模型只下载一次并完成场景呈现', async ({ page }, testIn
   await page.goto('/')
   await expect(page.getByTestId('spatial-scene')).toHaveAttribute('data-models-ready', 'true', { timeout: 15000 })
   await expect(page.getByTestId('model-loading')).toHaveCount(0)
-  await expect.poll(() => page.evaluate(() => window.__eEraReadGeometryAudit?.().length || 0)).toBe(18)
+  await expect.poll(() => page.evaluate(() => window.__eEraReadGeometryAudit?.().length || 0)).toBe(17)
   expect(requests).toHaveLength(1)
 })

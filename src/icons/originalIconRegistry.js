@@ -120,16 +120,6 @@ export const ICON_DEFINITIONS = {
     label: '烧瓶',
     elements: [element('path', { d: 'M9 3v5l-4 7a5 5 0 0 0 4 8h6a5 5 0 0 0 4-8l-4-7V3' })],
   },
-  book: {
-    label: '书本',
-    elements: [
-      element('path', {
-        d: 'M4 6h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z',
-      }),
-      element('path', { d: 'M4 6V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2' }),
-      element('line', { x1: 12, y1: 2, x2: 12, y2: 20 }),
-    ],
-  },
 }
 
 // ICON_DEFINITIONS 顶层不再整体冻结，以便副导航继续追加本地矢量。
@@ -142,7 +132,7 @@ Object.values(ICON_DEFINITIONS).forEach((definition) => {
   Object.freeze(definition.elements)
   Object.freeze(definition)
 })
-// 注意：保留「17 种原图标」这一事实描述，但顶层不再冻结以便扩展注册。
+// 注意：保留「16 种原图标」这一事实描述，但顶层不再冻结以便扩展注册。
 
 export const ALL_ICON_DEFINITIONS = Object.freeze({
   ...ICON_DEFINITIONS,
@@ -167,7 +157,6 @@ export const SERVICE_ICON_REGISTRY = {
   'miaoji-lab': { originalIcon: 'bulb', geometry: { source: 'bulb', color: '#fb923c' } },
   'era-oj': { originalIcon: 'terminal', geometry: { source: 'terminal', color: '#0ea5e9' } },
   'qifa-lab': { originalIcon: 'flask', geometry: { source: 'flask', color: '#10b981' } },
-  'duya-note': { originalIcon: 'book', geometry: { source: 'book', color: '#6b7280' } },
 }
 
 Object.values(SERVICE_ICON_REGISTRY).forEach((config) => {
